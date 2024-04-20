@@ -30,9 +30,9 @@ However, this package does NOT provide:
 
 Apart from the `cryptanalysis` module, the package uses only the standard
 library. Third party packages are necessary to run cryptanalysis algoritms:
-    - numpy https://numpy.org/
-    - sympy https://www.sympy.org/ (for integer factorization)
-    - python-flint https://pypi.org/project/python-flint/ (for LLL reduction)
+- numpy https://numpy.org/
+- sympy https://www.sympy.org/ (for integer factorization)
+- python-flint https://pypi.org/project/python-flint/ (for LLL reduction)
 
 
 ## Notes
