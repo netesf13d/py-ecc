@@ -22,7 +22,7 @@ The package provides:
 However, this package does NOT provide:
 
 * A fast and secure implementation of the algorithms and elliptic curve algebra.
-* Support for elliptic curves over finite fields Fq with non-prime q (eg q = 2^m).
+* Support for elliptic curves over finite fields $\mathrm{F}_q$ with non-prime $q$ (eg $q = 2^m$).
 * Random key generation for the various protocols.
 
 
