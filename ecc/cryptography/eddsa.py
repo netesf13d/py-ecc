@@ -9,7 +9,7 @@ RFC 8032 https://www.rfc-editor.org/rfc/rfc8032
 from typing import Callable
 from hashlib import sha512, shake_256
 
-from ..elliptic_curves.ec import CurvePoint, Edwards_Curve, get_curve
+from ..elliptic_curves.ec import CurvePoint, EdwardsCurve, get_curve
 
 
 Ed25519_hash = lambda m: sha512(m).digest()
@@ -30,7 +30,7 @@ class EdDSA():
     """
 
     def __init__(self,
-                 elliptic_curve: Edwards_Curve,
+                 elliptic_curve: EdwardsCurve,
                  G: CurvePoint,
                  n: int,
                  digest: Callable,

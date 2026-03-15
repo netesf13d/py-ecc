@@ -16,9 +16,9 @@ import random
 
 from ..elliptic_curves.ec import (sqrt_mod,
                                   get_curve,
-                                  Weierstrass_Curve,
-                                  Montgomery_Curve,
-                                  Edwards_Curve)
+                                  WeierstrassCurve,
+                                  MontgomeryCurve,
+                                  EdwardsCurve)
 
 
 # =============================================================================
@@ -87,19 +87,19 @@ def test_curve_equivalence(curve_equivalence: tuple[str, str]):
     p = mec.p
     
     # Edwards to Montgomery
-    mec_ = Montgomery_Curve(*edec.montgomery_form())
+    mec_ = MontgomeryCurve(*edec.montgomery_form())
     mG_ = edec.montgomery_point(edG)
     a = mec_.A + 2
     sign = a * pow(mec_.B, -1, p) % p
-    rescaled_mec = Montgomery_Curve(p, mec_.A, 1)
+    rescaled_mec = MontgomeryCurve(p, mec_.A, 1)
     chk_curve_eq = (rescaled_mec.A == mec.A and rescaled_mec.B == mec.B)
     rescaled_mG = (mG_[0], mG_[1]*pow(sqrt_mod(sign*a, p), 1, p) % p)
     chk_point_eq = (mG == rescaled_mG)
     
     # Montgomery to Edwards
-    edec_ = Edwards_Curve(*mec.edwards_form())
+    edec_ = EdwardsCurve(*mec.edwards_form())
     edG_ = mec.edwards_point(mG)
-    rescaled_edec = Edwards_Curve(p, sign, edec_.d * pow(sign*edec_.a, -1, p))
+    rescaled_edec = EdwardsCurve(p, sign, edec_.d * pow(sign*edec_.a, -1, p))
     chk_curve_eq &= (rescaled_edec.a == edec.a and rescaled_edec.d == edec.d)
     rescaled_edG = (edG_[0]*sqrt_mod(sign*edec_.a, p) % p, edG_[1])
     chk_point_eq &= (rescaled_edG == edG)
@@ -116,7 +116,7 @@ def test_birational_equivalences():
         - Montgomery to Weiertrass
     """
     p = 2**255 - 19
-    ec = Edwards_Curve(p, random.randint(1, p-1), random.randint(1, p-1))
+    ec = EdwardsCurve(p, random.randint(1, p-1), random.randint(1, p-1))
     # find a random point on curve
     P = (0, 0)
     while not ec.isin(P):
@@ -129,15 +129,15 @@ def test_birational_equivalences():
 
     print(f"Testing birational equivalence on curve {ec},\nwith point\n{P}...")
     # to Montgomery / to Weierstrass
-    mec = Montgomery_Curve(*ec.montgomery_form())
+    mec = MontgomeryCurve(*ec.montgomery_form())
     mP = ec.montgomery_point(P)
-    wec = Weierstrass_Curve(*ec.weierstrass_form())
+    wec = WeierstrassCurve(*ec.weierstrass_form())
     wP = ec.weierstrass_point(P)
     chk_point_in = mec.isin(mP) and wec.isin(wP)
     # conversion diagram: back to Edwards / Montgomery to Weierstrass
-    edec = Edwards_Curve(*mec.edwards_form())
+    edec = EdwardsCurve(*mec.edwards_form())
     edP = mec.edwards_point(mP)
-    wec_ = Weierstrass_Curve(*mec.weierstrass_form())
+    wec_ = WeierstrassCurve(*mec.weierstrass_form())
     wP_ = mec.weierstrass_point(mP)
     chk_diag = (edP == P and ec.a == edec.a and ec.d == edec.d
                 and wP == wP_ and wec.a == wec_.a and wec.b == wec_.b)

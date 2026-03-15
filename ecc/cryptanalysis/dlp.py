@@ -8,7 +8,7 @@ from math import gcd
 
 from sympy import factorint
 
-from ..elliptic_curves.ec import CurvePoint, Elliptic_Curve
+from ..elliptic_curves.ec import CurvePoint, EllipticCurve
 
 
 # =============================================================================
@@ -17,7 +17,7 @@ from ..elliptic_curves.ec import CurvePoint, Elliptic_Curve
 
 def pollard_rho(G: CurvePoint,
                 P: CurvePoint,
-                ec: Elliptic_Curve,
+                ec: EllipticCurve,
                 n: int,
                 nb_partitions: int = 2**5,
                 nb_distinguished: int = 2**9)-> int:
@@ -102,7 +102,7 @@ def pollard_rho(G: CurvePoint,
 
 def pohlig_hellman(G: CurvePoint,
                    P: CurvePoint,
-                   ec: Elliptic_Curve,
+                   ec: EllipticCurve,
                    n: int,
                    n_factors: dict[int, int],
                    bruteforce_thr: int = 512)-> int:
@@ -145,7 +145,7 @@ def pohlig_hellman(G: CurvePoint,
 
 
 def point_order(P: CurvePoint,
-                ec: Elliptic_Curve,
+                ec: EllipticCurve,
                 ec_card: int)-> tuple[int, dict]:
     """
     Compute the order n of the subgroup <P> of an elliptic curve `ec` with

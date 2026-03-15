@@ -12,7 +12,7 @@ from hashlib import (md5, sha1, sha224, sha256, sha384, sha512,
 from hmac import digest as hmac_digest
 from typing import TypeAlias
 
-from ..elliptic_curves.ec import (CurvePoint, Elliptic_Curve,
+from ..elliptic_curves.ec import (CurvePoint, EllipticCurve,
                                   get_curve, sqrt_mod)
 
 
@@ -57,10 +57,10 @@ def bits2int(x: bytes, nbits: int)-> int:
 # Elliptic Curve Digital Signature Algorithm Base class
 # =============================================================================
 
-class ECDSA_Base():
+class ECDSABase():
 
     def __init__(self,
-                 elliptic_curve: Elliptic_Curve,
+                 elliptic_curve: EllipticCurve,
                  G: CurvePoint,
                  n: int,
                  hash_name: str = "sha256"):
@@ -281,7 +281,7 @@ class ECDSA_Base():
 # Derived class
 # =============================================================================
 
-class ECDSA(ECDSA_Base):
+class ECDSA(ECDSABase):
 
     def __init__(self, curve_name: str, hash_name: str = "sha256"):
         self.curve_name = curve_name

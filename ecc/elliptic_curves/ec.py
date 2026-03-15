@@ -66,7 +66,7 @@ def sqrt_mod(a: int, p: int):
 # Base class
 # =============================================================================
 
-class Elliptic_Curve():
+class EllipticCurve():
     """
     Base class for elliptic curves over finite prime fields.
     """
@@ -160,7 +160,7 @@ class Elliptic_Curve():
 # Concrete implementations
 # =============================================================================
 
-class Weierstrass_Curve(Elliptic_Curve):
+class WeierstrassCurve(EllipticCurve):
     """
     Implementation of an elliptic curve in Weierstrass normal form over the
     finite field Fp.
@@ -288,7 +288,7 @@ class Weierstrass_Curve(Elliptic_Curve):
 
 
 
-class Montgomery_Curve(Elliptic_Curve):
+class MontgomeryCurve(EllipticCurve):
     """
     Implementation of a Montgomery elliptic curve over the finite field Fp.
     
@@ -449,7 +449,7 @@ class Montgomery_Curve(Elliptic_Curve):
                 return (x, y)    
 
 
-class Edwards_Curve(Elliptic_Curve):
+class EdwardsCurve(EllipticCurve):
     """
     Implementation of an (twisted) Edwards curve over the finite field Fp.
     
@@ -620,16 +620,16 @@ class Edwards_Curve(Elliptic_Curve):
 
 def build_curve(curve_type: str,
                 p: int,
-                params: tuple[int, ...])-> Elliptic_Curve:
+                params: tuple[int, ...])-> EllipticCurve:
     """
     Return the appropriate Elliptic_Curve object depending on `curve_type`.
     """
     if curve_type == "weierstrass":
-        return Weierstrass_Curve(p, *params)
+        return WeierstrassCurve(p, *params)
     if curve_type == "montgomery":
-        return Montgomery_Curve(p, *params)
+        return MontgomeryCurve(p, *params)
     if curve_type == "edwards":
-        return Edwards_Curve(p, *params)
+        return EdwardsCurve(p, *params)
     raise ValueError("curve_type must be in "
                      "{'weierstrass', 'montgomery', 'edwards'}")
 

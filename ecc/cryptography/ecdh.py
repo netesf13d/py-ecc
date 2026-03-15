@@ -7,7 +7,7 @@ from RFC 7748 https://www.rfc-editor.org/rfc/rfc7748
 from typing import TypeAlias
 from hashlib import sha512, shake_256
 
-from ..elliptic_curves.ec import CurvePoint, Elliptic_Curve, get_curve
+from ..elliptic_curves.ec import CurvePoint, EllipticCurve, get_curve
 
 
 Ed25519_hash = lambda m: sha512(m).digest()
@@ -23,7 +23,7 @@ Signature: TypeAlias = tuple[int, int]
 class ECDH():
 
     def __init__(self,
-                 elliptic_curve: Elliptic_Curve,
+                 elliptic_curve: EllipticCurve,
                  G: CurvePoint,
                  n: int,
                  h: int):

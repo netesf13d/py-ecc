@@ -10,7 +10,7 @@ curves:
       see RFC 7748 https://www.rfc-editor.org/rfc/rfc7748
 """
 
-from .ecdsa import ECDSA, ECDSA_Base
+from .ecdsa import ECDSA, ECDSABase
 from .eddsa import EdDSA, eddsa_obj
 from .ecdh import ECDH, ecdh_obj
 

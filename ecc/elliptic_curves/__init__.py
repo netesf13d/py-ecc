@@ -12,9 +12,9 @@ Along with an utility function:
     - <get_curve> : to load standard curves
 """
 
-from .ec import (Weierstrass_Curve,
-                 Montgomery_Curve,
-                 Edwards_Curve,
+from .ec import (WeierstrassCurve,
+                 MontgomeryCurve,
+                 EdwardsCurve,
                  CurvePoint,
                  get_curve)
 

@@ -26,13 +26,23 @@ However, this package does NOT provide:
 * Random key generation for the various protocols.
 
 
-## Dependencies
+## Usage
 
-Apart from the `cryptanalysis` module, the package uses only the standard
-library. Third party packages are necessary to run cryptanalysis algoritms:
+Apart from the `cryptanalysis` module, the package uses only the standard library. Third party packages are necessary to run cryptanalysis algoritms:
 - [numpy](https://numpy.org/)
 - [sympy](https://www.sympy.org/) (for integer factorization)
 - [python-flint](https://pypi.org/project/python-flint/) (for LLL reduction)
+
+Setup the Python environment to run the notebook `ecc_examples.ipynb`.
+- With `pip`,
+  ```bash
+  pip install -r requirements.txt
+  ```
+- Using `conda`,
+  ```bash
+  conda create --name <env_name> --file scripts/requirements.txt
+  conda activate <env_name>
+  ```
 
 
 ## Notes
