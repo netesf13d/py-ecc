@@ -40,8 +40,14 @@ Setup the Python environment to run the notebook `ecc_examples.ipynb`.
   ```
 - Using `conda`,
   ```bash
-  conda create --name <env_name> --file scripts/requirements.txt
+  conda create --name <env_name> --file requirements.txt
   conda activate <env_name>
+  ```
+- Using `uv`,
+  ```bash
+  uv venv .venv
+  source .venv/bin/activate   # On Windows: .venv\Scripts\activate
+  uv pip install -r requirements.txt
   ```
 
 
